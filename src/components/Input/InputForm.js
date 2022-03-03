@@ -1,8 +1,14 @@
 import classes from "./InputForm.module.css";
 import InputField from "./InputField";
-function InputForm() {
+function InputForm(props) {
   return (
-    <form action="" className={classes.form}>
+    <form
+      action=""
+      className={classes.form}
+      onSubmit={(event) => {
+        event.preventDefault();
+      }}
+    >
       <InputField label="Starting Amount ($)">
         <div className={classes.startingAmount}>
           <input type="number" placeholder={20000} step={1000} />
@@ -32,7 +38,10 @@ function InputForm() {
         </div>
       </InputField>
       <InputField label="Additional Contribution">
-        <div className={classes.startingAmount}>
+        <div
+          className={(classes.startingAmount, classes.additionalContributions)}
+        >
+          <button onClick={props.showOverlay}>Complex</button>
           <input type="number" placeholder={2000} />
         </div>
       </InputField>
@@ -45,7 +54,7 @@ function InputForm() {
           <span>Of</span>
           <select name="time" id="time" className={classes.timing}>
             <option value="month">Month</option>
-            <option value="year">Year {" "}</option>
+            <option value="year">Year </option>
           </select>
         </div>
       </InputField>

@@ -1,8 +1,7 @@
 import Data from './components/Data/Data';
 function App() {
-  return <div className="App">
-    <Data/>
-  </div>;
+  return  <Data/>;
+
 }
 
 export default App;
