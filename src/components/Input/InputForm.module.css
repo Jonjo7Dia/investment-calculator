@@ -1,0 +1,45 @@
+.form {
+    width: 100%;
+    height: 100%;
+}
+
+.startingAmount {
+    width: 50%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    font-size: 1.25rem;
+}
+.startingAmount input {
+   max-width: 80%;
+   width: auto;
+   text-align: right;
+   font-size: 1rem;
+   outline-style: none;
+   border: none;
+}
+select {
+    max-width: 80%;
+   width: auto;
+   text-align: right;
+   font-size: 1rem;
+   outline-style: none;
+   border: none;
+}
+
+.timing {
+    width: 36%;
+    font-size: 1rem;
+}
+.timing:nth-of-type(1){
+    width: 50%;
+}
+.period {
+    display: flex;
+    align-items: center;
+    width: 50%;
+    justify-content: space-between;
+}
+.period span{
+    font-size: 1rem;
+}
