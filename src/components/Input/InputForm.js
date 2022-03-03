@@ -10,7 +10,7 @@ function InputForm() {
       </InputField>
       <InputField label="After (Years)">
         <div className={classes.startingAmount}>
-          <input type="number" placeholder={10} />
+          <input type="number" placeholder={10} min={0} />
         </div>
       </InputField>
       <InputField label="Return Rate (%)">
@@ -45,7 +45,7 @@ function InputForm() {
           <span>Of</span>
           <select name="time" id="time" className={classes.timing}>
             <option value="month">Month</option>
-            <option value="year">Year</option>
+            <option value="year">Year {" "}</option>
           </select>
         </div>
       </InputField>

@@ -1,0 +1,30 @@
+.resultsData{
+    width: 100%;
+    height: 100%;
+    display:flex;
+    flex-direction: row;
+}
+.resultsData div {
+    width: 50%;
+    height: 100%;
+    padding: 0;
+}
+ul {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    list-style: none;
+    height: 100%;
+}
+.numbers {
+    text-align: right;
+}
+li:nth-of-type(3){
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-bottom-color: black;
+}li:nth-of-type(4){
+    font-weight: bold;
+}
