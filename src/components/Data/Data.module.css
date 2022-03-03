@@ -1,0 +1,15 @@
+.holder {
+    width: 70rem;
+    display: flex;
+    flex-direction: row;
+    margin: 2rem auto;
+    justify-content: space-between;
+    height: 30rem;
+}
+.inputResults {
+    width: 34%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
