@@ -2,52 +2,52 @@ import { useReducer } from "react";
 import InputsContext from "./inputs-context";
 
 function monthRate(interest) {
-  let monthlyRate = ((1 + 100 / interest) ^ (1 / 12)) - 1;
+  let monthlyRate = ((1 +(interest/100)) ** (1 / 12)) - 1;
   return monthlyRate;
 }
 
-const defaultCartState = {
+const defaultInputsState = {
   startingAmount: 20000,
   after: 10,
   returnRate: 6,
   monthlyRate: monthRate(6),
-  compound: "annually",
+  compound: 1,
   additionalContribution: 1000,
-  when: "end",
-  time: "month",
+  when: "End",
+  time: "Month",
 };
 
 const inputsReducer = (state, action) => {
   if (action.type === "SETAMOUNT") {
-    state.startingAmount = action.payload;
+    return {...state, startingAmount: action.payload};
   }
   if (action.type === "SETAFTER") {
-    state.after = action.payload;
+    return {...state, after: action.payload};
   }
   if (action.type === "SETRATE") {
-    state.returnRate = action.payload;
-    state.monthlyRate = monthRate(action.payload);
+    return {...state, returnRate: action.payload, monthlyRate: monthRate(action.payload)};
   }
   if (action.type === "SETCOMPOUND") {
-    state.compound = action.payload;
+   return {...state, compound: action.payload};
   }
   if (action.type === "SETCONTRIBUTION") {
-    state.additionalContribution = action.payload;
+    return {...state, additionalContribution: action.payload};
   }
   if (action.type === "SETWHEN") {
-    state.when = action.payload;
+    return {...state, when: action.payload };
   }
   if (action.type === "SETTIME") {
-    state.time = action.payload;
+    return {...state, time: action.payload };
   } else {
-    console.log("error");
+    console.log(action.type);
+    console.log(action.payload);
   }
 };
 
 const InputsProvider = (props) => {
   const [inputsState, dispatchInputsAction] = useReducer(
     inputsReducer,
-    defaultCartState
+    defaultInputsState
   );
   const setStartingAmountHandler = (amount) => {
     dispatchInputsAction({
