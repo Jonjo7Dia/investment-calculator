@@ -2,8 +2,10 @@ import classes from "./InputForm.module.css";
 import InputField from "./InputField";
 import InputsContext from "../../store/inputs-context";
 import { useContext } from "react";
+import ResultsContext from '../../store/results-context';
 function InputForm(props) {
   const inputCtx = useContext(InputsContext);
+  const resultsCtx = useContext(ResultsContext);
   function startingAmountHandler(event) {
     inputCtx.setStartingAmount(Math.floor(event.target.value));
   }
@@ -25,9 +27,8 @@ function InputForm(props) {
   function timeHandler (event){
       inputCtx.setTime(event.target.value);
   }
-  console.log(inputCtx);
 
-
+  resultsCtx.setResults();
   return (
     <form
       action=""
@@ -72,7 +73,7 @@ function InputForm(props) {
             <option value={24}>Semi-Monthly</option>
            
             <option value={52}>Weekly</option>
-            <option value={365.242}>Daily</option>
+            <option value={365}>Daily</option>
           </select>
         </div>
       </InputField>
@@ -108,8 +109,8 @@ function InputForm(props) {
             defaultValue={inputCtx.time}
             onChange={timeHandler}
           >
-            <option value="Month">Month</option>
-            <option value="Year">Year </option>
+            <option value={12}>Month</option>
+            <option value={1}>Year </option>
           </select>
         </div>
       </InputField>

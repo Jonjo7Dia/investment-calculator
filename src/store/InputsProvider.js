@@ -13,8 +13,8 @@ const defaultInputsState = {
   monthlyRate: monthRate(6),
   compound: 1,
   additionalContribution: 1000,
-  when: "End",
-  time: "Month",
+  when: "Beginning",
+  time: 12,
 };
 
 const inputsReducer = (state, action) => {
