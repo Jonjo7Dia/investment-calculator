@@ -5,10 +5,10 @@ const InputsContext = React.createContext({
     after: 10,
     returnRate: 6,
     monthlyRate: 0,
-    compound: 'annually',
+    compound: 'Annually',
     additionalContribution: 1000,
-    when: 'end',
-    time: 'month',
+    when: 'End',
+    time: 'Month',
     setStartingAmount: (amount) => {},
     setAfter: (years) => {},
     setReturn: (rate) => {},
@@ -19,13 +19,3 @@ const InputsContext = React.createContext({
 });
 
 export default InputsContext;
-// import React from "react";
-
-// const CartContext = React.createContext({
-//   items: [],
-//   totalAmount: 0,
-//   addItem: (item) => {},
-//   removeItem: (id) => {},
-//   clearCart: () => {}
-// });
-// export default CartContext;

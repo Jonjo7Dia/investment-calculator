@@ -1,49 +1,47 @@
 import { useReducer } from "react";
-
 import InputsContext from "./inputs-context";
+
 function monthRate(interest) {
-    let monthlyRate = ((1 + (100/6))^(1/12))-1;
-    return monthlyRate;
+  let monthlyRate = ((1 + 100 / interest) ^ (1 / 12)) - 1;
+  return monthlyRate;
 }
+
 const defaultCartState = {
   startingAmount: 20000,
   after: 10,
   returnRate: 6,
-  monthlyRate: monthRate(returnRate),
+  monthlyRate: monthRate(6),
   compound: "annually",
   additionalContribution: 1000,
   when: "end",
   time: "month",
 };
 
-
 const inputsReducer = (state, action) => {
-    if (action.type === 'SETAMOUNT'){
-        state.startingAmount = action.payload;
-    }
-    if (action.type === 'SETAFTER'){
-        state.after = action.payload;
-    }
-    if (action.type === 'SETRATE'){
-        state.returnRate = action.payload;
-    }
-    if (action.type === 'SETCOMPOUND'){
-        state.compound = action.payload;
-    }
-    if (action.type === 'SETCONTRIBUTION'){
-        state.additionalContribution = action.payload;
-    }
-    if (action.type === 'SETWHEN'){
-        state.when = action.payload;
-    }
-    if (action.type == 'SETTIME'){
-        state.time = action.payload;
-    }
-    else {
-        console.log('error');
-    }
-
-
+  if (action.type === "SETAMOUNT") {
+    state.startingAmount = action.payload;
+  }
+  if (action.type === "SETAFTER") {
+    state.after = action.payload;
+  }
+  if (action.type === "SETRATE") {
+    state.returnRate = action.payload;
+    state.monthlyRate = monthRate(action.payload);
+  }
+  if (action.type === "SETCOMPOUND") {
+    state.compound = action.payload;
+  }
+  if (action.type === "SETCONTRIBUTION") {
+    state.additionalContribution = action.payload;
+  }
+  if (action.type === "SETWHEN") {
+    state.when = action.payload;
+  }
+  if (action.type === "SETTIME") {
+    state.time = action.payload;
+  } else {
+    console.log("error");
+  }
 };
 
 const InputsProvider = (props) => {
@@ -51,46 +49,46 @@ const InputsProvider = (props) => {
     inputsReducer,
     defaultCartState
   );
-  setStartingAmountHandler = (amount) => {
-      dispatchInputsAction({
-          type: 'SETAMOUNT',
-          payload: amount,
-      });
-  };
-  setAfterHandler  = (years) => {
+  const setStartingAmountHandler = (amount) => {
     dispatchInputsAction({
-        type: 'SETAFTER',
-        payload: years,
+      type: "SETAMOUNT",
+      payload: amount,
     });
   };
-  setReturnHandler  = (rate) => {
+  const setAfterHandler = (years) => {
     dispatchInputsAction({
-        type: 'SETRATE',
-        payload: rate,
+      type: "SETAFTER",
+      payload: years,
     });
   };
-  setCompoundHandler  = (period) => {
+  const setReturnHandler = (rate) => {
     dispatchInputsAction({
-        type: 'SETCOMPOUND',
-        payload: period,
+      type: "SETRATE",
+      payload: rate,
     });
   };
-  setContributionHandler  = (amount) => {
+  const setCompoundHandler = (period) => {
     dispatchInputsAction({
-        type: 'SETCOMPOUND',
-        payload: amount,
+      type: "SETCOMPOUND",
+      payload: period,
     });
   };
-  setWhenHandler  = (when) => {
+  const setContributionHandler = (amount) => {
     dispatchInputsAction({
-        type: 'SETWHEN',
-        payload: when,
+      type: "SETCOMPOUND",
+      payload: amount,
     });
   };
-  setTimeHandler  = (time) => {
+  const setWhenHandler = (when) => {
     dispatchInputsAction({
-        type: 'SETTIME',
-        payload: time,
+      type: "SETWHEN",
+      payload: when,
+    });
+  };
+  const setTimeHandler = (time) => {
+    dispatchInputsAction({
+      type: "SETTIME",
+      payload: time,
     });
   };
   const inputsContext = {
@@ -109,11 +107,12 @@ const InputsProvider = (props) => {
     setContribution: setContributionHandler,
     setWhen: setWhenHandler,
     setTime: setTimeHandler,
-  }
+  };
   return (
-      <InputsContext.Provider value={inputsContext}>
-          {props.children}
-      </InputsContext.Provider>
-  )
-
+    <InputsContext.Provider value={inputsContext}>
+      {props.children}
+    </InputsContext.Provider>
+  );
 };
+
+export default InputsProvider;
