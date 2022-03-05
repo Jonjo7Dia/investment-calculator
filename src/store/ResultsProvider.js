@@ -10,6 +10,11 @@ const defaultResultsState = {
   data: {},
   results: [],
 };
+const beginningInterest = (principal, rate, t) =>{
+    let r = rate/100;
+    let total = principal * ((1+r/t)**(t/12));
+    return Number(( total - principal).toFixed(3));
+}
 
 const resultsReducer = (state, action) => {
   if (action.type === "SETDATA") {
@@ -62,8 +67,42 @@ const ResultsProvider = (props) => {
     else {
         let data = inputsCtx;
         let holder = [];
-        if(data.when === 'Beginning'){
+        let r  = parseFloat(data.returnRate);
+        let t = data.compound;
+        let contribution = data.additionalContribution;
+        let principal = data.startingAmount;
+        let item;
 
+        if(data.when === 'Beginning'){
+            for (let x = 0; x <  data.after * 12; x ++ ){
+                if (x=== 0){
+                    item = {
+                        principal: principal,
+                        contribution: contribution,
+                        startBalance: principal + contribution,
+                        interest: beginningInterest((principal + contribution), r, t),
+                        endBalance: beginningInterest((principal + contribution), r, t) + principal + contribution,
+                        endPrincipal: principal + contribution,
+                    }
+                    holder.push(item);
+                    principal = holder[0].endPrincipal;
+                }
+                else {
+                    item = {
+                        principal: principal,
+                        contribution: contribution,
+                        startBalance: holder[x-1].endBalance + contribution,
+                        interest: beginningInterest(holder[x-1].endBalance + contribution, r, t),
+                        endBalance: beginningInterest(holder[x-1].endBalance + contribution, r, t) + Number(holder[x-1].endBalance + contribution),
+                        endPrincipal: principal + contribution,
+                    }
+                    holder.push(item);
+                    principal = holder[x].endPrincipal;
+                }
+            }
+            resultsState.results = holder;
+ 
+            
         }
     }
   }
