@@ -4,7 +4,7 @@ const ResultsContext = React.createContext({
   complexSelected: false,
   complexMonthlyContributions: [],
   data: {},
-  results: [],
+  results: {monthlyResults: [], totalContributions: 0, totalInterest: 0,},
   setData: (userInput) => {},
   setMonthly: (userInput) => {},
   setComplex: (userInput) => {},

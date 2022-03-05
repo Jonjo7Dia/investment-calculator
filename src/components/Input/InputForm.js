@@ -84,7 +84,7 @@ function InputForm(props) {
           <button onClick={props.showOverlay}>Complex</button>
           <input
             type="number"
-            value={inputCtx.additionalContribution}
+            defaultValue={inputCtx.additionalContribution}
             onChange={contributionHandler}
           />
         </div>
