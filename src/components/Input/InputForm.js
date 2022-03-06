@@ -19,7 +19,9 @@ function InputForm(props) {
       inputCtx.setCompound(Math.floor(event.target.value));
   }
   function contributionHandler(event){
+
       inputCtx.setContribution(Math.floor(event.target.value))
+      console.log(inputCtx.additionalContribution);
   }
   function periodHandler(event){
       inputCtx.setWhen(event.target.value);

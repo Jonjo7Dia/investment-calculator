@@ -1,6 +1,7 @@
 import { useContext, useReducer } from "react";
 import ResultsContext from "./results-context";
 import InputsContext from "./inputs-context";
+import { _adapters } from "chart.js";
 
 const defaultResultsState = {
   complexSelected: false,
@@ -12,6 +13,10 @@ const beginningInterest = (principal, rate, t) => {
   let r = rate / 100;
   let total = principal * (1 + r / t) ** (t / 12);
   return Number((total - principal).toFixed(3));
+};
+const endInterest = (principal, rate, t) => {
+  let r = rate / 100;
+  return Number(principal * ((1 + r / t) ** (t / 12) - 1));
 };
 
 const resultsReducer = (state, action) => {
@@ -67,22 +72,21 @@ const ResultsProvider = (props) => {
       let t = data.compound;
       let contribution = 0;
       let principal = data.startingAmount;
-      console.log(data.additionalContribution);
+      let item;
+      let totalI = 0;
+      let totalC = 0;
       if (data.time === 12) {
         contribution = data.additionalContribution;
       } else {
         contribution = 0;
       }
 
-      let item;
-      let totalI = 0;
-      let totalC = 0;
-
       if (data.when === "Beginning") {
         for (let x = 0; x < data.after * 12; x++) {
           if (x === 0) {
             contribution = data.additionalContribution;
             item = {
+            id: x,  
               principal: principal,
               contribution: contribution,
               startBalance: principal + contribution,
@@ -97,8 +101,7 @@ const ResultsProvider = (props) => {
             principal = holder[0].endPrincipal;
           } else {
             if (Number(data.time) === 1) {
-
-              if (((x + 1) % 12 ===1) && x !== 1) {
+              if ((x + 1) % 12 === 1 && x !== 1) {
                 contribution = data.additionalContribution;
               } else {
                 contribution = 0;
@@ -108,6 +111,7 @@ const ResultsProvider = (props) => {
             }
 
             item = {
+              id: x,  
               principal: principal,
               contribution: contribution,
               startBalance: holder[x - 1].endBalance + contribution,
@@ -133,10 +137,51 @@ const ResultsProvider = (props) => {
         resultsState.results.monthlyResults = holder;
         resultsState.results.totalInterest = totalI;
         resultsState.results.totalContributions = totalC;
-        console.log(data.time);
-        console.log(resultsState.results.monthlyResults);
-        console.log(resultsState.results.totalInterest);
-        console.log(resultsState.results.totalContributions);
+      } else if (data.when === "End") {
+        for (let x = 0; x < data.after * 12; x++) {
+          if (Number(data.time) === 1) {
+            if ((x + 1) % 12 !== 0) {
+              contribution = 0;
+            } else {
+              contribution = data.additionalContribution;
+            }
+          } else if (Number(data.time) === 12) {
+            contribution = data.additionalContribution;
+          }
+          if (x === 0) {
+            item = {
+              id: x,  
+              principal: principal,
+              contribution: contribution,
+              startBalance: principal,
+              interest: endInterest(principal, r, t),
+              endBalance:
+                endInterest(principal, r, t) + contribution + principal,
+              endPrincipal: principal + contribution,
+            };
+          } else {
+            item = {
+              id: x,  
+              principal: holder[x - 1].endPrincipal,
+              contribution: contribution,
+              startBalance: holder[x - 1].endBalance,
+              interest: endInterest(holder[x - 1].endBalance, r, t),
+              endBalance:
+                endInterest(holder[x - 1].endBalance, r, t) +
+                holder[x - 1].endBalance +
+                contribution,
+              endPrincipal: holder[x - 1].endPrincipal + contribution,
+            };
+          }
+          holder.push(item);
+          totalI = holder[x].interest + totalI;
+          totalC = holder[x].contribution + totalC;
+          principal = holder[x].endBalance;
+        }
+        resultsState.results.monthlyResults = holder;
+        console.log(holder);
+        console.log(totalI);
+        console.log(totalC);
       }
     }
   };

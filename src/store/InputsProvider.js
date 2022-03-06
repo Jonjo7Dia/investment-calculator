@@ -75,7 +75,7 @@ const InputsProvider = (props) => {
   };
   const setContributionHandler = (amount) => {
     dispatchInputsAction({
-      type: "SETCOMPOUND",
+      type: "SETCONTRIBUTION",
       payload: amount,
     });
   };
