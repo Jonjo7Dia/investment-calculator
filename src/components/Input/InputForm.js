@@ -8,7 +8,7 @@ function InputForm(props) {
   const resultsCtx = useContext(ResultsContext);
   function startingAmountHandler(event) {
       if (Math.floor(event.target.value)< 100000000000){
-        inputCtx.setStartingAmount(Math.floor(event.target.value));
+        inputCtx.setStartingAmount(Number(event.target.value));
 
       }
       else {
@@ -17,7 +17,7 @@ function InputForm(props) {
   }
   function afterHandler(event){
       if (Math.floor(event.target.value) > 0){
-        inputCtx.setAfter(Math.floor(event.target.value));
+        inputCtx.setAfter(Number(event.target.value));
       }
       else {
           alert('need at least one year');
@@ -25,7 +25,7 @@ function InputForm(props) {
       
   }
   function returnRateHandler(event){
-      inputCtx.setReturn(Math.floor(event.target.value));
+      inputCtx.setReturn(Number(event.target.value));
   }
   function compoundHandler(event){
       inputCtx.setCompound(Math.floor(event.target.value));
@@ -74,7 +74,7 @@ function InputForm(props) {
       </InputField>
       <InputField label="Return Rate (%)">
         <div className={classes.startingAmount}>
-          <input type="number" value={inputCtx.returnRate} onChange={returnRateHandler} />
+          <input type="number" value={inputCtx.returnRate} step={0.1} onChange={returnRateHandler} />
         </div>
       </InputField>
       <InputField label="Compound">

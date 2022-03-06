@@ -9,7 +9,7 @@ function monthRate(interest) {
 const defaultInputsState = {
   startingAmount: 20000,
   after: 10,
-  returnRate: 6,
+  returnRate: 6.0,
   monthlyRate: monthRate(6),
   compound: 1,
   additionalContribution: 1000,

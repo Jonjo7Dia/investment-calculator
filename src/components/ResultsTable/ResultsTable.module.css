@@ -16,6 +16,7 @@
 
   background-color: white;
   border-radius: 12px;
+  user-select: none;
 }
 
 .switch:hover{
@@ -23,8 +24,11 @@
     color: #742774;
     font-weight: bold;
 }
+.switch{
+    user-select: none;
+}
 
 
-:last-child {
+.resultsTable :last-child {
     border-radius: 12px;
 }
