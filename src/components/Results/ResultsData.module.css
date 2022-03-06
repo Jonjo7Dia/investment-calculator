@@ -21,10 +21,11 @@ ul {
 .numbers {
     text-align: right;
 }
-li:nth-of-type(3){
+.resultsData li:nth-of-type(3){
     border-bottom-style: solid;
     border-bottom-width: 1px;
     border-bottom-color: black;
-}li:nth-of-type(4){
+}
+.resultsData li:nth-of-type(4){
     font-weight: bold;
 }

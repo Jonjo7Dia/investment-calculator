@@ -7,7 +7,13 @@ function InputForm(props) {
   const inputCtx = useContext(InputsContext);
   const resultsCtx = useContext(ResultsContext);
   function startingAmountHandler(event) {
-    inputCtx.setStartingAmount(Math.floor(event.target.value));
+      if (Math.floor(event.target.value)< 100000000000){
+        inputCtx.setStartingAmount(Math.floor(event.target.value));
+
+      }
+      else {
+          alert('at that point you dont need interest');
+      }
   }
   function afterHandler(event){
       inputCtx.setAfter(Math.floor(event.target.value));
@@ -19,9 +25,14 @@ function InputForm(props) {
       inputCtx.setCompound(Math.floor(event.target.value));
   }
   function contributionHandler(event){
+    if (Math.floor(event.target.value)< 100000000000){
+        inputCtx.setContribution(Math.floor(event.target.value))
 
-      inputCtx.setContribution(Math.floor(event.target.value))
-      console.log(inputCtx.additionalContribution);
+    }
+    else {
+        alert('what do you do??');
+    }
+
   }
   function periodHandler(event){
       inputCtx.setWhen(event.target.value);
@@ -46,6 +57,7 @@ function InputForm(props) {
             value={inputCtx.startingAmount}
             step={1000}
             onChange={startingAmountHandler}
+            max= '1000000000'
           />
         </div>
       </InputField>
