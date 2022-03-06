@@ -1,6 +1,6 @@
-import { useReducer } from "react";
+import { useReducer, useContext } from "react";
 import ComplexContext from "./complex-context";
-
+import InputsContext from "./inputs-context";
 const defaultComplexState = {
   startingSalary: 30000,
   endSalary: 50000,
@@ -10,7 +10,12 @@ const defaultComplexState = {
   growthPeriod: 1,
   contributions: [],
 };
-
+function findK(start, end, t, period) {
+  let division = Number(start / end);
+  let log = Math.log(division);
+  let product = Number(t * period);
+  return -1 * log / product;
+}
 const complexReducer = (state, action) => {
   if (action.type === "SETSTART") {
     return { ...state, startingSalary: action.payload };
@@ -30,15 +35,11 @@ const complexReducer = (state, action) => {
   if (action.type === "SETPERIOD") {
     return { ...state, growthPeriod: action.payload };
   }
-  if (action.type === "SETCONTRIBUTION") {
-    return {
-      ...state,
-      contributions: action.payload,
-    };
-  }
+ 
 };
 
 const ComplexProvider = (props) => {
+    const inputsCtx = useContext(InputsContext);
   const [complexState, dispatchComplexAction] = useReducer(
     complexReducer,
     defaultComplexState
@@ -79,6 +80,19 @@ const ComplexProvider = (props) => {
       payload: amount,
     });
   };
+  const setContributionsHandler =() => {
+    
+    let k;
+    const when = inputsCtx.time;
+     k = findK(
+      complexState.startingSalary,
+      complexState.endSalary,
+      complexState.growthTime,
+      complexState.growthPeriod,
+    );
+    console.log(k);
+  }
+  
 
   const complexContext = {
     startingSalary: complexState.startingSalary,
@@ -94,6 +108,7 @@ const ComplexProvider = (props) => {
     setGrowthTime: setTimeHandler,
     setGrowthRate: setRateHandler,
     setGrowthPeriod: setPeriodHandler,
+    setContributions: setContributionsHandler,
   };
 
   return (

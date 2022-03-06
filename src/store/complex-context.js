@@ -14,6 +14,7 @@ const ComplexContext = React.createContext({
     setGrowthTime: (amount) =>{},
     setGrowthRate: (amount) =>{},
     setGrowthPeriod: (amount) =>{},
+    setContributions: () => {}
 });
 
 export default ComplexContext;

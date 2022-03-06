@@ -3,18 +3,23 @@ import Input from "../Input/Input";
 import Graph from "../Graph/Graph";
 import Results from "../Results/Results";
 import ResultsTable from "../ResultsTable/ResultsTable";
-import React, { useState, Fragment } from "react";
+import React, { useState, Fragment, useContext } from "react";
 import Complex from "../Complex/Complex";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 
+import ComplexContext from "../../store/complex-context";
+
 function Data() {
+  const complexCtx  = useContext(ComplexContext);
+  complexCtx.setContributions();
+
   const [showOverlay, setShowOverlay] = useState(false);
-  function showOverlayHandler(event){
+ 
+  function showOverlayHandler(){
     setShowOverlay(!showOverlay);
-    console.log(event.key);
   }
-  
+
   return (
     <Fragment>
       {showOverlay && (

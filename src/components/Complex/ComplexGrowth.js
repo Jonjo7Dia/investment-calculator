@@ -1,7 +1,14 @@
 import classes from "./ComplexGrowth.module.css";
-
-
+import ComplexContext from "../../store/complex-context";
+import { useContext } from "react";
 function ComplexGrowth(props) {
+    const complexCtx = useContext(ComplexContext);
+    function periodHandler(event) {
+        complexCtx.setGrowthPeriod(event.target.value);
+    }
+    function rateHandler(event){
+        complexCtx.setGrowthRate(event.target.value);
+    }
   return (
     <div className={classes.complexGrowth}>
       <div className={classes.growthInputs}>
@@ -12,6 +19,7 @@ function ComplexGrowth(props) {
             name="growthRate"
             id="growthRate"
             defaultValue={1}
+            onChange={rateHandler}
           >
             <option value={1}>Average</option>
             <option value={2}>Exponential</option>
@@ -25,6 +33,7 @@ function ComplexGrowth(props) {
             name="growthPeriod"
             id="growthPeriod"
             defaultValue={1}
+            onChange={periodHandler}
           >
             <option value={1}>Yearly</option>
             <option value={2}>Semi-Annually</option>

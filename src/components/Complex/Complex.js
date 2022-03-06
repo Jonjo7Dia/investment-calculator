@@ -2,6 +2,7 @@ import classes from './Complex.module.css';
 import ComplexHeader from './ComplexHeader';
 import ComplexBody from './ComplexBody';
 import ComplexGrowth from './ComplexGrowth';
+
 function Complex(props){
     return <div className={classes.complex}>
         <ComplexHeader />
