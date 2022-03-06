@@ -16,7 +16,13 @@ function InputForm(props) {
       }
   }
   function afterHandler(event){
-      inputCtx.setAfter(Math.floor(event.target.value));
+      if (Math.floor(event.target.value) > 0){
+        inputCtx.setAfter(Math.floor(event.target.value));
+      }
+      else {
+          alert('need at least one year');
+      }
+      
   }
   function returnRateHandler(event){
       inputCtx.setReturn(Math.floor(event.target.value));

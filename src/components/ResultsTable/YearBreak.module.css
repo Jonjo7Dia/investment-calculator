@@ -1,0 +1,13 @@
+.yearBreak {
+    background-color: #742774;
+    height: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.yearBreak span{
+    color: white;
+}
+.yearBreak:last-of-type {
+    border-radius: 0 0 12px 12px;
+}

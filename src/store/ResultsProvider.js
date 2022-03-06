@@ -7,7 +7,13 @@ const defaultResultsState = {
   complexSelected: false,
   complexMonthlyContributions: [],
   data: {},
-  results: { monthlyResults: [], totalContributions: 0, totalInterest: 0, startingAmount: 0, endBalance: 0 },
+  results: {
+    monthlyResults: [],
+    totalContributions: 0,
+    totalInterest: 0,
+    startingAmount: 0,
+    endBalance: 0,
+  },
 };
 const beginningInterest = (principal, rate, t) => {
   let r = rate / 100;
@@ -86,7 +92,7 @@ const ResultsProvider = (props) => {
           if (x === 0) {
             contribution = data.additionalContribution;
             item = {
-            id: x,  
+              id: x,
               principal: principal,
               contribution: contribution,
               startBalance: principal + contribution,
@@ -111,7 +117,7 @@ const ResultsProvider = (props) => {
             }
 
             item = {
-              id: x,  
+              id: x,
               principal: principal,
               contribution: contribution,
               startBalance: holder[x - 1].endBalance + contribution,
@@ -137,7 +143,6 @@ const ResultsProvider = (props) => {
         resultsState.results.monthlyResults = holder;
         resultsState.results.totalInterest = totalI;
         resultsState.results.totalContributions = totalC;
-    
       } else if (data.when === "End") {
         for (let x = 0; x < data.after * 12; x++) {
           if (Number(data.time) === 1) {
@@ -151,7 +156,7 @@ const ResultsProvider = (props) => {
           }
           if (x === 0) {
             item = {
-              id: x,  
+              id: x,
               principal: principal,
               contribution: contribution,
               startBalance: principal,
@@ -162,7 +167,7 @@ const ResultsProvider = (props) => {
             };
           } else {
             item = {
-              id: x,  
+              id: x,
               principal: holder[x - 1].endPrincipal,
               contribution: contribution,
               startBalance: holder[x - 1].endBalance,
@@ -182,12 +187,11 @@ const ResultsProvider = (props) => {
         resultsState.results.monthlyResults = holder;
         resultsState.results.totalInterest = totalI;
         resultsState.results.totalContributions = totalC;
-    
       }
     }
     resultsState.results.startingAmount = inputsCtx.startingAmount;
-    resultsState.results.endBalance = resultsState.results.monthlyResults[inputsCtx.after * 12 - 1].endBalance;
-
+    resultsState.results.endBalance =
+      resultsState.results.monthlyResults[inputsCtx.after * 12 - 1].endBalance;
   };
 
   const resultsContext = {
