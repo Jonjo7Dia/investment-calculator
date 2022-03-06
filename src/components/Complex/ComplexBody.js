@@ -1,5 +1,5 @@
 import classes from "./ComplexBody.module.css";
-import ComplexGrowth from './ComplexGrowth';
+
 import ComplexInputField from "./ComplexInputField";
 
 function ComplexBody() {

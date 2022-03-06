@@ -1,7 +1,7 @@
 import classes from "./ComplexGrowth.module.css";
-import ComplexInputField from "./ComplexInputField";
 
-function ComplexGrowth() {
+
+function ComplexGrowth(props) {
   return (
     <div className={classes.complexGrowth}>
       <div className={classes.growthInputs}>
@@ -32,6 +32,8 @@ function ComplexGrowth() {
           </select>
           </div>
         </div>
+        <div className={classes.growthInput}>
+            <button onClick={props.showOverlay}>Use Salary Based Contribution</button></div>
       </div>
     </div>
   );

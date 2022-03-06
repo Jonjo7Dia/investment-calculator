@@ -21,6 +21,9 @@
     height: 100%;
     display: flex;
     flex-direction: row;
+    border-bottom-style: solid;
+    border-color: black;
+    border-width: 1px;
 }
 .growthLabel {
     width: 50%;
@@ -42,9 +45,17 @@ p{
     padding-right: 4%;
     box-sizing: border-box;
 }
-.growthInput:first-of-type{
-    border-bottom-style: solid;
-    border-color: black;
-    border-width: 1px;
+.growthInput:last-of-type{
+    justify-content: flex-end;
+    border:none;
+    align-items: center;
+}
+.growthInput  button{
+    height: 80%;
+    background-color:  #742774; 
+    color: white;
+    border: none;
+    outline: none;
+    border-radius: 4px;
 }
 
