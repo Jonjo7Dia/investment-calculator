@@ -1,6 +1,7 @@
 import { useReducer, useContext } from "react";
 import ComplexContext from "./complex-context";
 import InputsContext from "./inputs-context";
+import ResultsContext from './results-context';
 const defaultComplexState = {
   startingSalary: 30000,
   endSalary: 50000,
@@ -39,6 +40,7 @@ const complexReducer = (state, action) => {
 
 const ComplexProvider = (props) => {
   const inputsCtx = useContext(InputsContext);
+  const resultsCtx = useContext(ResultsContext);
   const [complexState, dispatchComplexAction] = useReducer(
     complexReducer,
     defaultComplexState
@@ -122,9 +124,9 @@ const ComplexProvider = (props) => {
             holder.push(storage);
         }
     }
-    console.log(holder);
+
     complexState.contributions = holder;
-    
+    resultsCtx.setMonthly(holder);
   };
 
   const complexContext = {

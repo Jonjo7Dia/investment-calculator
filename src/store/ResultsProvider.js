@@ -44,10 +44,12 @@ const resultsReducer = (state, action) => {
       complexMonthlyContributions: action.payload,
     };
   }
+  
 };
 
 const ResultsProvider = (props) => {
   const inputsCtx = useContext(InputsContext);
+
   const [resultsState, dispatchResultsAction] = useReducer(
     resultsReducer,
     defaultResultsState
@@ -67,10 +69,13 @@ const ResultsProvider = (props) => {
   };
   const setComplexHandler = (userInput) => {
     dispatchResultsAction({ type: "SETCOMPLEX", payload: userInput });
-  };
+
+  }; 
+  
   const setResultsHandler = () => {
     if (resultsState.complexSelected) {
-      console.log("complex selected");
+      console.log(resultsState.complexMonthlyContributions)
+      
     } else {
       let data = inputsCtx;
       let holder = [];
@@ -203,6 +208,7 @@ const ResultsProvider = (props) => {
     setMonthly: setMonthlyHandler,
     setComplex: setComplexHandler,
     setResults: setResultsHandler,
+  
   };
 
   return (

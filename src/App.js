@@ -6,11 +6,13 @@ import React from "react";
 function App() {
   return (
     <InputsProvider>
-      <ComplexProvider>
+     
         <ResultsProvider>
+        <ComplexProvider>
           <Data />
+          </ComplexProvider>
         </ResultsProvider>
-      </ComplexProvider>
+    
     </InputsProvider>
   );
 }

@@ -8,15 +8,10 @@ import Complex from "../Complex/Complex";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 
-import ComplexContext from "../../store/complex-context";
-
 function Data() {
-  const complexCtx  = useContext(ComplexContext);
-  complexCtx.setContributions();
-
   const [showOverlay, setShowOverlay] = useState(false);
- 
-  function showOverlayHandler(){
+
+  function showOverlayHandler() {
     setShowOverlay(!showOverlay);
   }
 
@@ -27,7 +22,7 @@ function Data() {
           <button className={classes.close} onClick={showOverlayHandler}>
             <FontAwesomeIcon icon={faXmark} className={classes.imageLogo} />
           </button>
-          <Complex showOverlay={showOverlayHandler}/>
+          <Complex showOverlay={showOverlayHandler} />
         </div>
       )}
       <div className={classes.holder}>
