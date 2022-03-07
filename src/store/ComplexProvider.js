@@ -105,7 +105,9 @@ const ComplexProvider = (props) => {
     for (let x = 1; x <= complexState.growthTime * 12; x++) {
       if (x !== 1 && (x - 1) % (12 / growthPeriod) === 0) {
         if (growthRate === 2) {
+            
           salary = salary * Math.E ** k;
+          cont = (salary/12 )* contPerc;
         } else {
           salary = salary + division;
           monthlySalary = salary / 12;
@@ -115,7 +117,7 @@ const ComplexProvider = (props) => {
       if (growthRate === 1 ) {
         cont = (salary / 12) * contPerc;
       } else {
-        cont = monthlySalary * contPerc;
+          cont = (salary / 12) * contPerc
       }
       holder.push(cont);
     }
@@ -126,9 +128,11 @@ const ComplexProvider = (props) => {
         holder.push(storage);
       }
     }
+    console.log(holder)
 
     complexState.contributions = holder;
     resultsCtx.setMonthly(holder);
+
   };
 
   const complexContext = {

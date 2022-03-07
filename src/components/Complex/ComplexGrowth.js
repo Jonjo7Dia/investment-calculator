@@ -5,7 +5,6 @@ function ComplexGrowth(props) {
     const complexCtx = useContext(ComplexContext);
     useEffect(()=>{
         complexCtx.setContributions();
-        console.log(complexCtx.contributions);
     }, [complexCtx.growthPeriod, complexCtx.growthRate]);
     
     function periodHandler(event) {
