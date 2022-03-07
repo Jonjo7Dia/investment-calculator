@@ -1,9 +1,12 @@
 import classes from "./ComplexBody.module.css";
 import ComplexInputField from "./ComplexInputField";
 import ComplexContext from "../../store/complex-context";
+import InputsContext from '../../store/inputs-context';
 import { useContext } from "react";
 
 function ComplexBody() {
+    const inputsCtx = useContext(InputsContext);
+
     const complexCtx = useContext(ComplexContext);
     function startingHandler(event){
         if (event.target.value > 0 && event.target.value < 100000000){
@@ -21,9 +24,15 @@ function ComplexBody() {
         }
     }
     function timeHandler(event){
-        if(event.target.value > 0){
-            complexCtx.setGrowthTime(event.target.value);
+        let value = Number(event.target.value)
+        if(value > 0 && value <= inputsCtx.after){
+            complexCtx.setGrowthTime(value);
         }
+        else if (value >  Number(inputsCtx.after)){
+            alert('Time to get end salary should be the same or less than investment period');
+            complexCtx.setGrowthTime(inputsCtx.after);
+        }
+
     }
 
     
@@ -47,7 +56,7 @@ function ComplexBody() {
         </ComplexInputField>
         <ComplexInputField label={"Growth Time (Years)"}>
           <div className={classes.complexInput}>
-            <input type="number" defaultValue={10} step={1}onChange={timeHandler} />
+            <input type="number" defaultValue={Number(complexCtx.growthTime)} max= {inputsCtx.after} min={1} step={1} onChange={timeHandler} />
           </div>
         </ComplexInputField>
       </div>

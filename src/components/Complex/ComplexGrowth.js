@@ -37,7 +37,7 @@ function ComplexGrowth(props) {
           >
             <option value={1}>Yearly</option>
             <option value={2}>Semi-Annually</option>
-            <option value={3}>Monthly</option>
+            <option value={12}>Monthly</option>
           </select>
           </div>
         </div>

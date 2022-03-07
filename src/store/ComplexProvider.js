@@ -14,7 +14,7 @@ function findK(start, end, t, period) {
   let division = Number(start / end);
   let log = Math.log(division);
   let product = Number(t * period);
-  return -1 * log / product;
+  return (-1 * log) / product;
 }
 const complexReducer = (state, action) => {
   if (action.type === "SETSTART") {
@@ -35,11 +35,10 @@ const complexReducer = (state, action) => {
   if (action.type === "SETPERIOD") {
     return { ...state, growthPeriod: action.payload };
   }
- 
 };
 
 const ComplexProvider = (props) => {
-    const inputsCtx = useContext(InputsContext);
+  const inputsCtx = useContext(InputsContext);
   const [complexState, dispatchComplexAction] = useReducer(
     complexReducer,
     defaultComplexState
@@ -80,19 +79,53 @@ const ComplexProvider = (props) => {
       payload: amount,
     });
   };
-  const setContributionsHandler =() => {
-    
+  const setContributionsHandler = () => {
+    let contPerc = complexState.contributionPercentage / 100;
+    let holder = [];
     let k;
-    const when = inputsCtx.time;
-     k = findK(
+    k = findK(
       complexState.startingSalary,
       complexState.endSalary,
       complexState.growthTime,
-      complexState.growthPeriod,
+      complexState.growthPeriod
     );
-    console.log(k);
-  }
-  
+    let growthRate = complexState.growthRate;
+    growthRate = Number(growthRate);
+    let growthPeriod = complexState.growthPeriod;
+    let difference = complexState.endSalary - complexState.startingSalary;
+    let division = difference / (complexState.growthTime * growthPeriod);
+    let salary = complexState.startingSalary;
+    let monthlySalary = Number(complexState.startingSalary / 12);
+    let cont;
+    for (let x = 1; x <= complexState.growthTime * 12; x++) {
+      if (x !== 1 && (x - 1) % (12 / growthPeriod) === 0) {
+        if (growthRate === 2) {
+          salary = salary * (Math.E ** (k));
+
+        } else {
+          salary = salary + division;
+          monthlySalary = salary / 12;
+          cont = monthlySalary * contPerc;
+        }
+      }
+      if (growthRate === 2) {
+        cont = (salary / 12) * contPerc;
+      } else {
+        cont = monthlySalary * contPerc;
+      }
+      holder.push(cont);
+    }
+    if (holder.length < inputsCtx.after * 12){
+        let difference = inputsCtx.after * 12 - holder.length;
+        let storage = holder[holder.length - 1];
+        for ( let x = 0; x < difference; x++){
+            holder.push(storage);
+        }
+    }
+    console.log(holder);
+    complexState.contributions = holder;
+    
+  };
 
   const complexContext = {
     startingSalary: complexState.startingSalary,
@@ -104,7 +137,7 @@ const ComplexProvider = (props) => {
     contributions: complexState.contributions,
     setStartingSalary: setStartingSalaryHandler,
     setEndSalary: setEndSalaryHandler,
-    setPercentage: setPeriodHandler,
+    setPercentage: setPercentageHandler,
     setGrowthTime: setTimeHandler,
     setGrowthRate: setRateHandler,
     setGrowthPeriod: setPeriodHandler,
