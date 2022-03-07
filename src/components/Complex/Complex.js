@@ -6,9 +6,9 @@ import { useContext, useEffect } from "react";
 import ComplexContext from "../../store/complex-context";
 function Complex(props){
     const complexCtx = useContext(ComplexContext);
-    useEffect(()=>{
-        complexCtx.setContributions();
-    },[])
+
+        // complexCtx.setContributions();
+
  
     return <div className={classes.complex}>
         <ComplexHeader />

@@ -5,9 +5,13 @@ function ComplexGrowth(props) {
     const complexCtx = useContext(ComplexContext);
     function periodHandler(event) {
         complexCtx.setGrowthPeriod(event.target.value);
+        complexCtx.setContributions();
+
     }
     function rateHandler(event){
         complexCtx.setGrowthRate(event.target.value);
+        complexCtx.setContributions();
+
     }
   return (
     <div className={classes.complexGrowth}>
@@ -18,7 +22,7 @@ function ComplexGrowth(props) {
           <select
             name="growthRate"
             id="growthRate"
-            defaultValue={1}
+            defaultValue={complexCtx.growthPeriod}
             onChange={rateHandler}
           >
             <option value={1}>Average</option>
@@ -32,7 +36,7 @@ function ComplexGrowth(props) {
           <select
             name="growthPeriod"
             id="growthPeriod"
-            defaultValue={1}
+            defaultValue={complexCtx.growthRate}
             onChange={periodHandler}
           >
             <option value={1}>Yearly</option>

@@ -163,6 +163,13 @@ const ResultsProvider = (props) => {
           if ((x + 1) % 12 !== 0) {
             contribution = 0;
           } else {
+            if (resultsState.complexSelected){
+              contribution = resultsState.complexMonthlyContributions[x];
+            }
+            else {
+            contribution = data.additionalContribution;
+
+            }
           }
         } else if (Number(data.time) === 12) {
           if (resultsState.complexSelected) {

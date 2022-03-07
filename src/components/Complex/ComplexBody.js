@@ -11,26 +11,35 @@ function ComplexBody() {
     function startingHandler(event){
         if (event.target.value > 0 && event.target.value < 100000000){
             complexCtx.setStartingSalary(Number(event.target.value));
+            complexCtx.setContributions();
         }
     };
     function endHandler(event){
         if (event.target.value > 0 && event.target.value < 100000000){
             complexCtx.setEndSalary(Number(event.target.value));
+            complexCtx.setContributions();
+
         }
     };
     function percentageHandler(event){
         if(event.target.value > 0 && event.target.value <= 100){
             complexCtx.setPercentage(event.target.value);
+            complexCtx.setContributions();
+
         }
     }
     function timeHandler(event){
         let value = Number(event.target.value)
         if(value > 0 && value <= inputsCtx.after){
             complexCtx.setGrowthTime(value);
+            complexCtx.setContributions();
+
         }
         else if (value >  Number(inputsCtx.after)){
             alert('Time to get end salary should be the same or less than investment period');
             complexCtx.setGrowthTime(inputsCtx.after);
+            complexCtx.setContributions();
+
         }
 
     }
