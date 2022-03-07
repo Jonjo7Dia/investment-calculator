@@ -60,6 +60,7 @@ const InputsProvider = (props) => {
       type: "SETAFTER",
       payload: years,
     });
+
   };
   const setReturnHandler = (rate) => {
     dispatchInputsAction({

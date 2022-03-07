@@ -10,12 +10,12 @@ function ComplexBody() {
     const complexCtx = useContext(ComplexContext);
     function startingHandler(event){
         if (event.target.value > 0 && event.target.value < 100000000){
-            complexCtx.setStartingSalary(event.target.value);
+            complexCtx.setStartingSalary(Number(event.target.value));
         }
     };
     function endHandler(event){
         if (event.target.value > 0 && event.target.value < 100000000){
-            complexCtx.setEndSalary(event.target.value);
+            complexCtx.setEndSalary(Number(event.target.value));
         }
     };
     function percentageHandler(event){
@@ -46,7 +46,7 @@ function ComplexBody() {
         </ComplexInputField>
         <ComplexInputField label={"End Salary $ (Per Year)"}>
           <div className={classes.complexInput}>
-            <input type="number"value={complexCtx.endSalary} step={1000} onChange={endHandler}/>
+            <input type="number" value={complexCtx.endSalary} step={1000} onChange={endHandler}/>
           </div>
         </ComplexInputField>
         <ComplexInputField label={"Contribution Percentage (%)"}>

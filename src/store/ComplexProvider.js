@@ -1,7 +1,7 @@
 import { useReducer, useContext, useEffect } from "react";
 import ComplexContext from "./complex-context";
 import InputsContext from "./inputs-context";
-import ResultsContext from './results-context';
+import ResultsContext from "./results-context";
 const defaultComplexState = {
   startingSalary: 30000,
   endSalary: 50000,
@@ -40,6 +40,7 @@ const complexReducer = (state, action) => {
 
 const ComplexProvider = (props) => {
   const inputsCtx = useContext(InputsContext);
+  const after = inputsCtx.after;
   const resultsCtx = useContext(ResultsContext);
   const [complexState, dispatchComplexAction] = useReducer(
     complexReducer,
@@ -81,10 +82,10 @@ const ComplexProvider = (props) => {
       payload: amount,
     });
   };
- 
+
   const setContributionsHandler = () => {
     let contPerc = complexState.contributionPercentage / 100;
-    console.log(contPerc);
+
     let holder = [];
     let k;
     k = findK(
@@ -104,8 +105,7 @@ const ComplexProvider = (props) => {
     for (let x = 1; x <= complexState.growthTime * 12; x++) {
       if (x !== 1 && (x - 1) % (12 / growthPeriod) === 0) {
         if (growthRate === 2) {
-          salary = salary * (Math.E ** (k));
-
+          salary = salary * Math.E ** k;
         } else {
           salary = salary + division;
           monthlySalary = salary / 12;
@@ -119,21 +119,21 @@ const ComplexProvider = (props) => {
       }
       holder.push(cont);
     }
-    if (holder.length < inputsCtx.after * 12){
-        let difference = inputsCtx.after * 12 - holder.length;
-        let storage = holder[holder.length - 1];
-        for ( let x = 0; x < difference; x++){
-            holder.push(storage);
-        }
+    if (holder.length < after * 12) {
+      let difference = after * 12 - holder.length;
+      let storage = holder[holder.length - 1];
+      for (let x = 0; x < difference; x++) {
+        holder.push(storage);
+      }
     }
-
+    console.log(holder);
     complexState.contributions = holder;
     resultsCtx.setMonthly(holder);
   };
 
   const complexContext = {
     startingSalary: complexState.startingSalary,
-    endSalary: complexState.startingSalary,
+    endSalary: complexState.endSalary,
     contributionPercentage: complexState.contributionPercentage,
     growthTime: complexState.growthTime,
     growthRate: complexState.growthRate,
