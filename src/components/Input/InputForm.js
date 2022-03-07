@@ -3,6 +3,7 @@ import InputField from "./InputField";
 import InputsContext from "../../store/inputs-context";
 import { useContext } from "react";
 import ResultsContext from '../../store/results-context';
+import InputContribution from './InputContribution';
 function InputForm(props) {
   const inputCtx = useContext(InputsContext);
   const resultsCtx = useContext(ResultsContext);
@@ -101,7 +102,7 @@ function InputForm(props) {
         <div
           className={(classes.startingAmount, classes.additionalContributions)}
         >
-          <button onClick={props.showOverlay}>Complex</button>
+          <button className={classes.complex} onClick={props.showOverlay}>Complex</button>
           <input
             type="number"
             defaultValue={inputCtx.additionalContribution}
@@ -134,6 +135,7 @@ function InputForm(props) {
           </select>
         </div>
       </InputField>
+      <InputContribution />
     </form>
   );
 }
