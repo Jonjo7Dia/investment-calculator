@@ -41,17 +41,17 @@ function ComplexBody() {
       <div className={classes.complexInputs}>
         <ComplexInputField label={"Starting Salary $ (Per Year)"}>
           <div className={classes.complexInput}>
-            <input type="number" defaultValue={complexCtx.startingSalary} step={1000} onChange={startingHandler}/>
+            <input type="number"  value={complexCtx.startingSalary} step={1000} onChange={startingHandler}/>
           </div>
         </ComplexInputField>
         <ComplexInputField label={"End Salary $ (Per Year)"}>
           <div className={classes.complexInput}>
-            <input type="number" defaultValue={50000} step={1000} onChange={endHandler}/>
+            <input type="number"value={complexCtx.endSalary} step={1000} onChange={endHandler}/>
           </div>
         </ComplexInputField>
         <ComplexInputField label={"Contribution Percentage (%)"}>
           <div className={classes.complexInput}>
-            <input type="number" defaultValue={20.0} step={0.1} onChange={percentageHandler}/>
+            <input type="number" value={complexCtx.contributionPercentage} step={0.1} onChange={percentageHandler}/>
           </div>
         </ComplexInputField>
         <ComplexInputField label={"Growth Time (Years)"}>

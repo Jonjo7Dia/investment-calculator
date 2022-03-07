@@ -1,4 +1,4 @@
-import { useReducer, useContext } from "react";
+import { useReducer, useContext, useEffect } from "react";
 import ComplexContext from "./complex-context";
 import InputsContext from "./inputs-context";
 import ResultsContext from './results-context';
@@ -81,8 +81,10 @@ const ComplexProvider = (props) => {
       payload: amount,
     });
   };
+ 
   const setContributionsHandler = () => {
     let contPerc = complexState.contributionPercentage / 100;
+    console.log(contPerc);
     let holder = [];
     let k;
     k = findK(

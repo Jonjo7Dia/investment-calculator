@@ -4,7 +4,6 @@ import Result from "./Result";
 import { useContext, useState } from "react";
 import ResultsContext from "../../store/results-context";
 import YearBreak from "./YearBreak";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRepeat } from "@fortawesome/free-solid-svg-icons";
 function ResultsTable() {
@@ -104,7 +103,7 @@ function ResultsTable() {
     <div className={classes.holder}>
       <div className={classes.switch} onClick={showMonthHandler}>
         <FontAwesomeIcon icon={faRepeat} className={classes.imageLogo} />
-        Show Monthly Break Down
+        Show {showYear? 'Monthly' : 'Yearly'} Break Down
         <FontAwesomeIcon icon={faRepeat} className={classes.imageLogo} />
       </div>
       <div className={classes.resultsTable}>

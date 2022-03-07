@@ -2,8 +2,14 @@ import classes from './Complex.module.css';
 import ComplexHeader from './ComplexHeader';
 import ComplexBody from './ComplexBody';
 import ComplexGrowth from './ComplexGrowth';
-
+import { useContext, useEffect } from "react";
+import ComplexContext from "../../store/complex-context";
 function Complex(props){
+    const complexCtx = useContext(ComplexContext);
+    useEffect(()=>{
+        complexCtx.setContributions();
+    },[])
+ 
     return <div className={classes.complex}>
         <ComplexHeader />
         
