@@ -112,7 +112,7 @@ const ComplexProvider = (props) => {
           cont = monthlySalary * contPerc;
         }
       }
-      if (growthRate === 2) {
+      if (growthRate === 1 ) {
         cont = (salary / 12) * contPerc;
       } else {
         cont = monthlySalary * contPerc;
