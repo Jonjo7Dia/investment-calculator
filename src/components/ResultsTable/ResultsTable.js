@@ -18,6 +18,7 @@ function ResultsTable() {
   let content = [];
   let yearcounter = 0;
   let totalInterest = 0;
+  let totalContribution = 0;
   if (!showYear) {
       year = 'Month';
     for (let x = 0; x < data.length; x++) {
@@ -39,6 +40,17 @@ function ResultsTable() {
         );
       } else if (x === data.length - 1) {
         yearcounter++;
+        content.push(
+          <Result
+            key={item.id}
+            id={item.id}
+            principal={item.principal}
+            contribution={item.contribution}
+            startBalance={item.startBalance}
+            interest={item.interest}
+            endBalance={item.endBalance}
+            endPrincipal={item.endPrincipal}
+          />);
         content.push(<YearBreak year={yearcounter}  key={'yr'+ yearcounter}/>);
       } else {
         content.push(
@@ -60,8 +72,8 @@ function ResultsTable() {
     for (let x = 0; x < data.length; x++) {
         let item = data[x];
         totalInterest = item.interest + totalInterest;
-
-      if ((x) % 12 === 0 && x !== 0) {
+        totalContribution = item.contribution + totalContribution;
+      if ((x + 1) % 12 === 0 && x !== 0) {
        
         yearcounter++;
         content.push(
@@ -69,7 +81,7 @@ function ResultsTable() {
             key={item.id}
             id={yearcounter - 1}
             principal={item.principal}
-            contribution={item.contribution}
+            contribution={totalContribution}
             startBalance={item.startBalance}
             interest={totalInterest}
             endBalance={item.endBalance}
@@ -77,6 +89,7 @@ function ResultsTable() {
           />
         );
         totalInterest = 0;
+        totalContribution =0;
       }
       else if (x === data.length -1){
 
@@ -86,7 +99,7 @@ function ResultsTable() {
             key={item.id}
             id={yearcounter - 1}
             principal={item.principal}
-            contribution={item.contribution}
+            contribution={totalContribution}
             startBalance={item.startBalance}
             interest={totalInterest}
             endBalance={item.endBalance}
@@ -94,6 +107,7 @@ function ResultsTable() {
           />
         );
         totalInterest = 0;
+        totalContribution = 0;
       }
     }
   }

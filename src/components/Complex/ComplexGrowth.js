@@ -1,16 +1,21 @@
 import classes from "./ComplexGrowth.module.css";
 import ComplexContext from "../../store/complex-context";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 function ComplexGrowth(props) {
     const complexCtx = useContext(ComplexContext);
-    function periodHandler(event) {
-        complexCtx.setGrowthPeriod(event.target.value);
+    useEffect(()=>{
         complexCtx.setContributions();
+        console.log(complexCtx.contributions);
+    }, [complexCtx.growthPeriod, complexCtx.growthRate]);
+    
+    function periodHandler(event) {
+        complexCtx.setGrowthPeriod(Number(event.target.value));
+       
 
     }
     function rateHandler(event){
-        complexCtx.setGrowthRate(event.target.value);
-        complexCtx.setContributions();
+        complexCtx.setGrowthRate(Number(event.target.value));
+    
 
     }
   return (

@@ -1,12 +1,17 @@
 import classes from "./InputForm.module.css";
 import InputField from "./InputField";
 import InputsContext from "../../store/inputs-context";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import ResultsContext from '../../store/results-context';
 import InputContribution from './InputContribution';
+import ComplexContext from '../../store/complex-context';
 function InputForm(props) {
   const inputCtx = useContext(InputsContext);
   const resultsCtx = useContext(ResultsContext);
+  const complexCtx = useContext(ComplexContext);
+  useEffect(()=>{
+    complexCtx.setContributions();
+  }, [inputCtx.after])
   function startingAmountHandler(event) {
       if (Math.floor(event.target.value)< 100000000000){
         inputCtx.setStartingAmount(Number(event.target.value));

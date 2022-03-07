@@ -119,14 +119,14 @@ const ComplexProvider = (props) => {
       }
       holder.push(cont);
     }
-    if (holder.length < (after + 1) * 12) {
-      let difference = (after + 1)* 12 - holder.length;
+    if (holder.length < (after) * 12) {
+      let difference = (after)* 12 - holder.length;
       let storage = holder[holder.length - 1];
       for (let x = 0; x < difference; x++) {
         holder.push(storage);
       }
     }
-    console.log(holder);
+
     complexState.contributions = holder;
     resultsCtx.setMonthly(holder);
   };
