@@ -30,17 +30,12 @@ function ComplexBody() {
     }
     function timeHandler(event){
         let value = Number(event.target.value)
-        if(value > 0 && value <= inputsCtx.after){
+        if(value > 0 && value <= 100){
             complexCtx.setGrowthTime(value);
             complexCtx.setContributions();
 
         }
-        else if (value >  Number(inputsCtx.after)){
-            alert('Time to get end salary should be the same or less than investment period');
-            complexCtx.setGrowthTime(inputsCtx.after);
-            complexCtx.setContributions();
-
-        }
+       
 
     }
 
@@ -65,7 +60,7 @@ function ComplexBody() {
         </ComplexInputField>
         <ComplexInputField label={"Growth Time (Years)"}>
           <div className={classes.complexInput}>
-            <input type="number" defaultValue={Number(complexCtx.growthTime)} max= {inputsCtx.after} min={1} step={1} onChange={timeHandler} />
+            <input type="number" defaultValue={Number(complexCtx.growthTime)} max= {100} min={1} step={1} onChange={timeHandler} />
           </div>
         </ComplexInputField>
       </div>
