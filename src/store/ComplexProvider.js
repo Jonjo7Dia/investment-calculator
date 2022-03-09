@@ -128,7 +128,7 @@ const ComplexProvider = (props) => {
         holder.push(storage);
       }
     }
-    console.log(holder)
+
 
     complexState.contributions = holder;
     resultsCtx.setMonthly(holder);

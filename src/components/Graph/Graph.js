@@ -1,6 +1,7 @@
 import classes from "./Graph.module.css";
-import React from "react";
+import React, { useContext } from "react";
 import { Line } from "react-chartjs-2";
+import ResultsContext from '../../store/results-context';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -23,6 +24,28 @@ ChartJS.register(
 );
 
 function Graph() {
+
+  const resultCtx = useContext(ResultsContext);
+  const results = resultCtx.results.monthlyResults;
+ 
+  let totalInterest = [0];
+  let endBalance = [results[0].startBalance];
+  let totalPrincipal = [results[0].principal];
+  let interest = 0; 
+  let xAxis = [' '];
+  for (let x = 0; x < results.length; x++){
+    interest = Number(results[x].interest) + interest;
+    if ((x+1)%12 === 0 && x !==0 ){
+      let item = results[x];
+      let year = 'year ' + (x+1)/12;
+      endBalance.push(Number(item.endBalance.toFixed(2)));
+
+      totalInterest.push(Number(interest.toFixed(2)));
+      totalPrincipal.push(Number(item.endPrincipal.toFixed(2)));
+      xAxis.push(year);
+    }
+  }
+  
   const options = {
     maintainAspectRatio: false,
     tension: 0.4,
@@ -41,26 +64,26 @@ function Graph() {
    
   };
   const data = {
-    labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
+    labels: xAxis,
     datasets: [
       {
-        label: "Balance",
-        data: [33, 53, 85, 41, 44, 65, 21],
+        label: "Total Balance",
+        data: endBalance,
         fill: true,
         backgroundColor: "rgba(75,192,192,0.2)",
         borderColor: "rgba(75,192,192,1)",
       },
       {
-        label: "Principal",
-        data: [33, 25, 35, 51, 54, 76],
+        label: "Total Principal",
+        data: totalPrincipal,
         fill: false,
         borderColor: "#742774",
       },
       {
-        label: "Interest",
-        data: [3, 30, 45, 56, 24, 36],
+        label: "Total Interest",
+        data: totalInterest,
         fill: false,
-        borderColor: "#742774",
+        borderColor: "#2BD355",
       },
     ],
   };
