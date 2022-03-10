@@ -40,3 +40,20 @@
 
   }
  
+
+  @media only screen and (max-width: 1130px) and (min-width: 800px){
+
+    .holder {
+        width: 95%;
+        height: 75rem;
+        flex-direction: column;
+        margin-top: 0;
+        justify-content: space-around;
+    }
+    .inputResults{
+        flex-direction: row;
+        width: 100%;
+        height: 30%;
+    }
+
+  }

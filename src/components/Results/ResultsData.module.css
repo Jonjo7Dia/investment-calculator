@@ -29,3 +29,14 @@ ul {
 .resultsData li:nth-of-type(4){
     font-weight: bold;
 }
+
+@media only screen and (max-width: 1130px) and (min-width: 800px){
+
+    .resultsData ul{
+        justify-content: space-between;
+        height: 90%;
+        margin-top: 5%;
+    }
+    
+
+  }

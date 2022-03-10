@@ -40,3 +40,11 @@
   border-right-color: #da95da;
   border-right-width: 1px;
 }
+
+
+@media only screen and (max-width: 1130px) and (min-width: 800px){
+
+  .resultsTableHeader{
+    font-size: 1.5vw;
+  }
+}

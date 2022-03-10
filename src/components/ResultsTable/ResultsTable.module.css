@@ -32,3 +32,11 @@
 .resultsTable :last-child {
     border-radius: 12px;
 }
+
+
+@media only screen and (max-width: 1130px) and (min-width: 800px){
+
+    .holder{
+        width: 100%;
+    }
+  }
