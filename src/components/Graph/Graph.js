@@ -57,7 +57,7 @@ function Graph() {
         },
         title: {
             display: true,
-            text: 'Custom Chart Title'
+            text: 'Total Earned In Investment Period'
         },
 
     },
