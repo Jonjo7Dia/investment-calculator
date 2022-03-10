@@ -34,7 +34,7 @@ function Graph() {
   let xAxis = [" "];
   let string = "";
   if (results.length / 12 <= 10) {
-    string = "year";
+    string = "Year ";
   }
   for (let x = 0; x < results.length; x++) {
     interest = Number(results[x].interest) + interest;
