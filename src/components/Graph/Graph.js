@@ -63,7 +63,7 @@ function Graph() {
         beginAtZero: true,
         title: {
           display: true,
-          text: "Total Earned",
+          text: "Earnings",
           color: "#742774",
           font: {
             size: 15,
