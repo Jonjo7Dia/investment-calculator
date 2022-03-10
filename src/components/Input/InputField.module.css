@@ -18,3 +18,11 @@ p{
     width: 48%;
  
 }
+
+
+@media only screen and (max-width: 800px){
+    .label{
+        font-size: 3.5vw;
+    }
+   
+   }

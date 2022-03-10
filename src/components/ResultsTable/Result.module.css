@@ -64,3 +64,21 @@
   }
 
   
+
+  @media only screen and (max-width: 800px){
+    .tableResult{
+      font-size:2vw;
+    }
+    .tableResultClr{
+      font-size: 2vw;
+    }
+    .bigValue {
+      width: 17%;
+    }
+    .smallValue {
+      width: 13%;
+    }
+    
+  
+  
+  }

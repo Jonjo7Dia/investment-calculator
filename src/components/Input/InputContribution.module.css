@@ -24,3 +24,11 @@
         font-size: 1.2vw;
     }
   }
+
+
+@media only screen and (max-width: 800px){
+    .contribution{
+        font-size: 2.5vw;
+    }
+   
+   }

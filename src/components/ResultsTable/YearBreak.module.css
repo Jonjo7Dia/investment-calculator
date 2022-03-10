@@ -11,3 +11,10 @@
 .yearBreak:last-of-type {
     border-radius: 0 0 12px 12px;
 }
+
+@media only screen and (max-width: 800px){
+    .yearBreak {
+        font-size: 3.5vw;
+    }
+  
+  }

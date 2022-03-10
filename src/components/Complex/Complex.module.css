@@ -30,3 +30,18 @@ h3 {
     height: 40%;
     width: 100%;
 }
+
+
+@media only screen and (max-width: 800px){
+    .complex {
+        width: 95%;
+        margin: auto;
+
+    }
+    .growthHeader{
+        font-size: 3.5vw;
+    }
+
+   
+   
+   }

@@ -48,3 +48,19 @@
     font-size: 1.5vw;
   }
 }
+
+
+@media only screen and (max-width: 800px){
+  .resultsTableHeader{
+    font-size: 1.7vw;
+    height: 2rem;
+  }
+  .smallValue{
+    width: 13%;
+  }
+  .bigValue {
+    width: 17%;
+  }
+
+
+}

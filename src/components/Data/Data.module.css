@@ -57,3 +57,30 @@
     }
 
   }
+
+  @media only screen and (max-width: 800px){
+    .holder {
+        width: 100%;
+        height: 75rem;
+        flex-direction: column;
+        margin-top: 0;
+        justify-content: space-between;
+        
+    }
+    .inputResults{
+        width: 95%;
+        margin: 0 auto;
+        height: 48%;
+    }
+
+
+  }
+
+  @media only screen and (max-width: 800px){
+   .close {
+       margin-left: 0;
+       margin-top: 0;
+   }
+  
+  
+  }

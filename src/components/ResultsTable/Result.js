@@ -13,9 +13,9 @@ function Result(props){
       }
       let width = window.innerWidth;
       let decimal = 2;
-      if (width < 1130){
-          decimal = 0;
-      }
+    //   if (width < 1130){
+    //       decimal = 0;
+    //   }
       console.log(width);
     return <div className={backClr} key={props.id}>
         <div className={classes.month}><span>{props.id + 1}</span></div>
