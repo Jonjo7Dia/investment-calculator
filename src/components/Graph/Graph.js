@@ -1,7 +1,7 @@
 import classes from "./Graph.module.css";
 import React, { useContext } from "react";
 import { Line } from "react-chartjs-2";
-import ResultsContext from '../../store/results-context';
+import ResultsContext from "../../store/results-context";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -24,20 +24,23 @@ ChartJS.register(
 );
 
 function Graph() {
-
   const resultCtx = useContext(ResultsContext);
   const results = resultCtx.results.monthlyResults;
- 
+
   let totalInterest = [0];
   let endBalance = [results[0].startBalance];
   let totalPrincipal = [results[0].principal];
-  let interest = 0; 
-  let xAxis = [' '];
-  for (let x = 0; x < results.length; x++){
+  let interest = 0;
+  let xAxis = [" "];
+  let string = "";
+  if (results.length / 12 <= 10) {
+    string = "year";
+  }
+  for (let x = 0; x < results.length; x++) {
     interest = Number(results[x].interest) + interest;
-    if ((x+1)%12 === 0 && x !==0 ){
+    if ((x + 1) % 12 === 0 && x !== 0) {
       let item = results[x];
-      let year = 'year ' + (x+1)/12;
+      let year = string + (x + 1) / 12;
       endBalance.push(Number(item.endBalance.toFixed(2)));
 
       totalInterest.push(Number(interest.toFixed(2)));
@@ -45,23 +48,40 @@ function Graph() {
       xAxis.push(year);
     }
   }
-  
+
   const options = {
     maintainAspectRatio: false,
     tension: 0.4,
-      plugins: {
-        subtitle: {
-            position: 'bottom',
-            display: true,
-            text: 'Custom Chart Subtitle'
-        },
-        title: {
-            display: true,
-            text: 'Total Earned In Investment Period'
-        },
-
+    plugins: {
+      title: {
+        display: true,
+        text: "Total Earned In Investment Period",
+      },
     },
-   
+    scales: {
+      y: {
+        beginAtZero: true,
+        title: {
+          display: true,
+          text: "Total Earned",
+          color: "#742774",
+          font: {
+            size: 15,
+          },
+        },
+      },
+      x: {
+        beginAtZero: true,
+        title: {
+          display: true,
+          text: "Time in Years",
+          color: "#742774",
+          font: {
+            size: 15,
+          },
+        },
+      },
+    },
   };
   const data = {
     labels: xAxis,

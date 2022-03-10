@@ -1,4 +1,4 @@
-import { useReducer, useContext, useEffect } from "react";
+import { useReducer, useContext} from "react";
 import ComplexContext from "./complex-context";
 import InputsContext from "./inputs-context";
 import ResultsContext from "./results-context";

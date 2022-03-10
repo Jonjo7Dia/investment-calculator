@@ -50,7 +50,7 @@ function ComplexGrowth(props) {
           </div>
         </div>
         <div className={classes.growthInput}>
-            <button onClick={props.showOverlay}>Use Salary Based Contribution</button></div>
+            <button onClick={props.showOverlay}>Close Window</button></div>
       </div>
     </div>
   );

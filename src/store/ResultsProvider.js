@@ -1,7 +1,6 @@
 import { useContext, useReducer } from "react";
 import ResultsContext from "./results-context";
 import InputsContext from "./inputs-context";
-import { _adapters } from "chart.js";
 
 const defaultResultsState = {
   complexSelected: false,
@@ -89,12 +88,10 @@ const ResultsProvider = (props) => {
     if (data.when === "Beginning") {
       for (let x = 0; x < data.after * 12; x++) {
         if (x === 0) {
-          if (resultsState.complexSelected){
+          if (resultsState.complexSelected) {
             contribution = resultsState.complexMonthlyContributions[x];
-          }
-          else {
-          contribution = data.additionalContribution;
-
+          } else {
+            contribution = data.additionalContribution;
           }
           item = {
             id: x,
@@ -113,23 +110,19 @@ const ResultsProvider = (props) => {
         } else {
           if (Number(data.time) === 1) {
             if ((x + 1) % 12 === 1 && x !== 1) {
-              if (resultsState.complexSelected){
+              if (resultsState.complexSelected) {
                 contribution = resultsState.complexMonthlyContributions[x];
-              }
-              else {
-              contribution = data.additionalContribution;
-
+              } else {
+                contribution = data.additionalContribution;
               }
             } else {
               contribution = 0;
             }
           } else {
-            if (resultsState.complexSelected){
+            if (resultsState.complexSelected) {
               contribution = resultsState.complexMonthlyContributions[x];
-            }
-            else {
-            contribution = data.additionalContribution;
-
+            } else {
+              contribution = data.additionalContribution;
             }
           }
 
@@ -163,12 +156,10 @@ const ResultsProvider = (props) => {
           if ((x + 1) % 12 !== 0) {
             contribution = 0;
           } else {
-            if (resultsState.complexSelected){
+            if (resultsState.complexSelected) {
               contribution = resultsState.complexMonthlyContributions[x];
-            }
-            else {
-            contribution = data.additionalContribution;
-
+            } else {
+              contribution = data.additionalContribution;
             }
           }
         } else if (Number(data.time) === 12) {
