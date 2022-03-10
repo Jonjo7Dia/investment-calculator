@@ -107,7 +107,7 @@ function InputForm(props) {
         <div
           className={(classes.startingAmount, classes.additionalContributions)}
         >
-          <button className={classes.complex} onClick={props.showOverlay}>Complex</button>
+          <button className={classes.complex} onClick={props.showOverlay}> <span className={classes.tooltiptext}>Base Contribution on Salary</span> Complex</button>
           <input
             type="number"
             defaultValue={inputCtx.additionalContribution}

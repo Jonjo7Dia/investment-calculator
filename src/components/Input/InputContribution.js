@@ -15,6 +15,7 @@ function InputContribution() {
     }
   return (
     <div className={classes.contributionActions}>
+    <span className={classes.tooltiptext}>Switch Between Salary Based Contribution and Simple Based Contribution</span>
       <button className={classes.contribution} onClick={setComplexTrueHandler}>Complex Contribution</button>
       <button className={classes.contribution} onClick={setComplexFalseHandler}>Simple Contribution</button>
     </div>
